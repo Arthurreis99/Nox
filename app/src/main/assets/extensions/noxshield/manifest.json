@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Nox Shield",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Complementary YouTube ad and tracking protection for Nox.",
   "browser_specific_settings": {
     "gecko": {

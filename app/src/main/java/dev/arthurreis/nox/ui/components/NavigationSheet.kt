@@ -80,7 +80,7 @@ fun NavigationSheet(
         )
 
         Text(
-            text = "Nox 0.1.1 • GeckoView • uBlock Origin 1.74.0",
+            text = "Nox 0.1.2 • GeckoView • uBlock Origin 1.74.0",
             color = NoxTextMuted,
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(vertical = 18.dp),

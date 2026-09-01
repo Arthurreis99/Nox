@@ -10,7 +10,7 @@ val uBlockXpi = rootProject.layout.projectDirectory.file(
 )
 val generatedUBlockAssets = layout.buildDirectory.dir("generated/ublock-assets")
 val extractUBlockOrigin by tasks.registering(Copy::class) {
-    description = "Extracts the pinned uBlock Origin XPI into generated Android assets."
+    description = "Extracts and adapts the pinned uBlock Origin XPI for Nox."
     doFirst {
         check(uBlockXpi.asFile.isFile) {
             "Missing uBlock Origin package. Run ./scripts/fetch-ublock.sh first."
@@ -18,6 +18,24 @@ val extractUBlockOrigin by tasks.registering(Copy::class) {
     }
     from(zipTree(uBlockXpi.asFile))
     into(generatedUBlockAssets.map { it.dir("extensions/ublock") })
+    doLast {
+        // Blocking the ad media stream itself can leave the mobile YouTube player waiting for
+        // its timeout. Nox instead lets the tiny stream initialize and immediately seeks it to
+        // the end while uBO continues removing the ad placement from player responses.
+        val builtInFilters = generatedUBlockAssets.get().file(
+            "extensions/ublock/assets/ublock/filters.min.txt",
+        ).asFile
+        val timeoutCausingFilter = "*_ad_\$media,domain=youtube.com,3p"
+        val original = builtInFilters.readText()
+        check(original.lineSequence().any { it == timeoutCausingFilter }) {
+            "The pinned uBlock package changed; review the YouTube media compatibility patch."
+        }
+        builtInFilters.writeText(
+            original.lineSequence()
+                .filterNot { it == timeoutCausingFilter }
+                .joinToString(separator = "\n", postfix = "\n"),
+        )
+    }
 }
 
 android {
@@ -29,8 +47,8 @@ android {
         applicationId = "dev.arthurreis.nox"
         minSdk = 26
         targetSdk = 37
-        versionCode = 2
-        versionName = "0.1.1"
+        versionCode = 3
+        versionName = "0.1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true

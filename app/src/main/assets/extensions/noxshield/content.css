@@ -18,3 +18,10 @@ ytm-promoted-video-renderer,
   min-height: 0 !important;
   height: 0 !important;
 }
+
+/* Prevent the first ad frame from flashing while the skipper advances it. */
+.html5-video-player.ad-showing video,
+.html5-video-player.ad-interrupting video {
+  opacity: 0 !important;
+  transition: none !important;
+}

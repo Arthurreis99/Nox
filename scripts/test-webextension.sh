@@ -11,7 +11,10 @@ unzip -p "$ublock_xpi" manifest.json | jq -e \
 echo "uBlock Origin package validation passed"
 
 node "$project_dir/app/src/test/js/filter-core.test.js"
+node --check "$project_dir/app/src/main/assets/extensions/noxshield/content.js"
+node --check "$project_dir/app/src/main/assets/extensions/noxshield/background.js"
 jq -e '.manifest_version == 2' "$project_dir/app/src/main/assets/extensions/noxshield/manifest.json" >/dev/null
+jq -e '.version == "1.1.0"' "$project_dir/app/src/main/assets/extensions/noxshield/manifest.json" >/dev/null
 jq -e '.browser_specific_settings.gecko.id == "noxshield@arthurreis.dev"' \
   "$project_dir/app/src/main/assets/extensions/noxshield/manifest.json" >/dev/null
 echo "Nox Shield manifest validation passed"

@@ -8,6 +8,7 @@ Nox é um aplicativo Android dedicado à versão web móvel do YouTube, com foco
 
 - uBlock Origin completo, integrado como extensão nativa do GeckoView.
 - Camada complementar Nox Shield para banners e anúncios do player.
+- Avanço imediato de anúncios residuais, evitando a espera em tela preta do player móvel.
 - Enhanced Tracking Protection em modo estrito.
 - Isolamento de cookies de terceiros.
 - Global Privacy Control e `DNT: 1`.
@@ -59,7 +60,7 @@ node app/src/test/js/filter-core.test.js
 - GeckoView `154.0.20260824154132`, Mozilla Public License 2.0.
 - uBlock Origin `1.74.0`, GNU GPL v3. O pacote oficial incorporado possui SHA-256 `175756d74468c9ba45863f7fc333d3be670f82d5b066314e915814dd547d1652`.
 
-O pacote oficial do uBlock Origin é baixado por `scripts/fetch-ublock.sh`, validado pelo SHA-256 fixado e extraído pelo Gradle durante a compilação. A licença e os avisos permanecem dentro do XPI.
+O pacote oficial do uBlock Origin é baixado por `scripts/fetch-ublock.sh`, validado pelo SHA-256 fixado e extraído pelo Gradle durante a compilação. Na cópia gerada para o APK, o Gradle remove uma regra de bloqueio de mídia do YouTube que pode manter o player móvel esperando o timeout do anúncio; as demais regras, incluindo a remoção de anúncios da resposta do player, permanecem ativas. A licença e os avisos permanecem dentro do XPI.
 
 ## Licença
 
