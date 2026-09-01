@@ -110,8 +110,7 @@ jobs:
             mkdir -p app/build/reports
             adb install -r app/build/outputs/apk/debug/app-x86_64-debug.apk
             adb logcat -c
-            adb shell am start -W -n dev.arthurreis.nox.debug/dev.arthurreis.nox.MainActivity \
-              | tee app/build/reports/smoke-startup.txt
+            adb shell am start -W -n dev.arthurreis.nox.debug/dev.arthurreis.nox.MainActivity | tee app/build/reports/smoke-startup.txt
             sleep 15
             adb logcat -d > app/build/reports/smoke-logcat.txt
             test -n "$(adb shell pidof dev.arthurreis.nox.debug | tr -d '\r')"
