@@ -89,7 +89,7 @@ android {
         compose = true
     }
 
-    sourceSets.getByName("main").assets.srcDir(generatedUBlockAssets)
+    sourceSets.getByName("main").assets.srcDir(generatedUBlockAssets.get().asFile)
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
