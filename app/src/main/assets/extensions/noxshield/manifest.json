@@ -1,0 +1,38 @@
+{
+  "manifest_version": 2,
+  "name": "Nox Shield",
+  "version": "1.0.0",
+  "description": "Complementary YouTube ad and tracking protection for Nox.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "noxshield@arthurreis.dev",
+      "strict_min_version": "115.0"
+    }
+  },
+  "background": {
+    "scripts": [
+      "filter-core.js",
+      "background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://youtube.com/*",
+        "*://*.youtube.com/*"
+      ],
+      "css": ["content.css"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "permissions": [
+    "nativeMessaging",
+    "geckoViewAddons",
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ]
+}

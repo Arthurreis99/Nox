@@ -1,0 +1,20 @@
+ytd-display-ad-renderer,
+ytd-promoted-sparkles-web-renderer,
+ytd-promoted-video-renderer,
+ytd-in-feed-ad-layout-renderer,
+ytd-banner-promo-renderer,
+ytm-promoted-sparkles-web-renderer,
+ytm-promoted-video-renderer,
+.ytd-ad-slot-renderer,
+.ytp-ad-overlay-container,
+.ytp-ad-player-overlay,
+.video-ads,
+#masthead-ad,
+#player-ads,
+#panels ytd-engagement-panel-section-list-renderer[target-id="engagement-panel-ads"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  min-height: 0 !important;
+  height: 0 !important;
+}

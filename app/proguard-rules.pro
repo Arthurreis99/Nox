@@ -1,0 +1,3 @@
+-keep class org.mozilla.geckoview.** { *; }
+-dontwarn org.mozilla.geckoview.**
+-keepattributes *Annotation*
